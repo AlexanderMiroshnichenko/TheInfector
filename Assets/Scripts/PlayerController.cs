@@ -13,8 +13,6 @@ namespace TopDownShooter
 
 		[SerializeField]
 		private Character m_character;
-		[SerializeField]
-		private float m_speed = 10f;
 
 		private Vector2 m_move;
 		private InputAction m_moveAction;
@@ -50,7 +48,12 @@ namespace TopDownShooter
 			{
 				m_move = m_moveAction.ReadValue<Vector2>();
 				Vector3 offset = new Vector3(m_move.x, 0f, m_move.y);
-				m_character.Move(offset * m_speed * Time.deltaTime);
+				m_character.Move(offset);
+
+				if (m_move.x != 0f || m_move.y != 0f)
+				{
+					m_character.SetLook(offset);
+				}
 			}
 		}
 	}
