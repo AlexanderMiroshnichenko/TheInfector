@@ -9,6 +9,7 @@ namespace TopDownShooter
 	{
 		private Rigidbody m_body;
 		[SerializeField] private float m_force = 15f;
+		[SerializeField] private float m_damage = 50f;
 
 		private void Awake()
 		{
@@ -22,6 +23,11 @@ namespace TopDownShooter
 
 		private void OnCollisionEnter(Collision other)
 		{
+			if (other.gameObject.TryGetComponent(out HealthComponent health))
+			{
+				health.TakeDamage(m_damage);
+			}
+
 			Destroy(gameObject);
 		}
 	}
