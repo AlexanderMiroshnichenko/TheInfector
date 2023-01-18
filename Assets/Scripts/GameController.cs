@@ -6,16 +6,19 @@ namespace TopDownShooter
 {
 	public class GameController : MonoBehaviour
 	{
-		// Start is called before the first frame update
-		void Start()
-		{
+		[SerializeField] private PlayerController m_playerController;
+		[SerializeField] private Character m_playerCharacterPrefab;
+		[SerializeField] private Transform m_spawnPoint;
 
+		private void Start()
+		{
+			var player = SpawnPlayer();
+			m_playerController.Init(player);
 		}
 
-		// Update is called once per frame
-		void Update()
+		private Character SpawnPlayer()
 		{
-
+			return Instantiate(m_playerCharacterPrefab, m_spawnPoint.position, m_spawnPoint.rotation);
 		}
 	}
 }
