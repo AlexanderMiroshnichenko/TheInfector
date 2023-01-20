@@ -10,7 +10,7 @@ public class AutoBuildNavMesh : MonoBehaviour
 {
    [SerializeField] private NavMeshSurface m_surface;
 
-private void Start()
+private void Awake()
 {
     m_surface.BuildNavMesh();
 }
